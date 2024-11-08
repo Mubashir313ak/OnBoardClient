@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 // hooks
+import { Box } from '@mui/material';
 import { useBoolean } from 'src/hooks/use-boolean';
 // routes
 import { paths } from 'src/routes/paths';
@@ -28,15 +29,10 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 export default function JwtRegisterView() {
   const { register } = useAuthContext();
-
   const router = useRouter();
-
   const [errorMsg, setErrorMsg] = useState('');
-
   const searchParams = useSearchParams();
-
   const returnTo = searchParams.get('returnTo');
-
   const password = useBoolean();
 
   const RegisterSchema = Yup.object().shape({
@@ -67,7 +63,6 @@ export default function JwtRegisterView() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       await register?.(data.email, data.password, data.firstName, data.lastName);
-
       router.push(returnTo || PATH_AFTER_LOGIN);
     } catch (error) {
       console.error(error);
@@ -79,10 +74,8 @@ export default function JwtRegisterView() {
   const renderHead = (
     <Stack spacing={2} sx={{ mb: 5, position: 'relative' }}>
       <Typography variant="h4">Get started absolutely free</Typography>
-
       <Stack direction="row" spacing={0.5}>
-        <Typography variant="body2"> Already have an account? </Typography>
-
+        <Typography variant="body2">Already have an account?</Typography>
         <Link href={paths.auth.jwt.login} component={RouterLink} variant="subtitle2">
           Sign in
         </Link>
@@ -116,14 +109,11 @@ export default function JwtRegisterView() {
     <FormProvider methods={methods} onSubmit={onSubmit}>
       <Stack spacing={2.5}>
         {!!errorMsg && <Alert severity="error">{errorMsg}</Alert>}
-
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
           <RHFTextField name="firstName" label="First name" />
           <RHFTextField name="lastName" label="Last name" />
         </Stack>
-
         <RHFTextField name="email" label="Email address" />
-
         <RHFTextField
           name="password"
           label="Password"
@@ -138,7 +128,6 @@ export default function JwtRegisterView() {
             ),
           }}
         />
-
         <LoadingButton
           fullWidth
           color="inherit"
@@ -154,12 +143,30 @@ export default function JwtRegisterView() {
   );
 
   return (
-    <>
-      {renderHead}
-
-      {renderForm}
-
-      {renderTerms}
-    </>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh', // Center vertically within the viewport
+        padding: 2,
+      }}
+    >
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: 400, // Limit width for larger screens
+          mx: 'auto', // Center horizontally
+          p: 3, // Padding inside the form container
+          boxShadow: 3,
+          borderRadius: 2,
+          backgroundColor: 'background.paper',
+        }}
+      >
+        {renderHead}
+        {renderForm}
+        {renderTerms}
+      </Box>
+    </Box>
   );
 }

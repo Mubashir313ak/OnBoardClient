@@ -11,6 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 // routes
+import { Box } from '@mui/material';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { useSearchParams, useRouter } from 'src/routes/hooks';
@@ -125,14 +126,36 @@ export default function JwtLoginView() {
   );
 
   return (
-    <FormProvider methods={methods} onSubmit={onSubmit}>
-      {renderHead}
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh', // Center vertically within the viewport
+        padding: 2,
+      }}
+    >
+      <Box
+        sx={{
+          width: '100%', // Full width on smaller screens
+          maxWidth: 400, // Limit width on larger screens
+          mx: 'auto', // Center horizontally
+          p: 3, // Padding inside the form container
+          boxShadow: 3, // Optional: Adds a shadow for visual separation
+          borderRadius: 2, // Optional: Rounds the corners
+          backgroundColor: 'background.paper', // Optional: Adds a background color
+        }}
+      >
+        <FormProvider methods={methods} onSubmit={onSubmit}>
+          {renderHead}
 
-      <Alert severity="info" sx={{ mb: 3 }}>
-        Use email : <strong>demo@minimals.cc</strong> / password :<strong> demo1234</strong>
-      </Alert>
+          <Alert severity="info" sx={{ mb: 3 }}>
+            Use email : <strong>demo@minimals.cc</strong> / password : <strong>demo1234</strong>
+          </Alert>
 
-      {renderForm}
-    </FormProvider>
+          {renderForm}
+        </FormProvider>
+      </Box>
+    </Box>
   );
 }

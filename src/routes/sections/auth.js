@@ -28,17 +28,18 @@ const authJwt = {
     {
       path: 'login',
       element: (
-        <AuthClassicLayout>
-          <JwtLoginPage />
-        </AuthClassicLayout>
+        // <AuthClassicLayout>
+        <JwtLoginPage />
+        // </AuthClassicLayout>
       ),
     },
     {
       path: 'register',
       element: (
-        <AuthClassicLayout title="Manage the job more effectively with Minimal">
-          <JwtRegisterPage />
-        </AuthClassicLayout>
+        // <AuthClassicLayout title="Manage the job more effectively with Minimal">
+        //   <JwtRegisterPage />
+        // </AuthClassicLayout>
+        <JwtRegisterPage />
       ),
     },
   ],
