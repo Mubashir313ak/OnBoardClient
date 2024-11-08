@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 // sections
-import { JwtRegisterView } from 'src/sections/auth/jwt';
+// import { JwtRegisterView } from 'src/sections/auth/jwt';
+import MultiStepForm from 'src/sections/auth/jwt/stepper';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +12,7 @@ export default function RegisterPage() {
         <title> Jwt: Register</title>
       </Helmet>
 
-      <JwtRegisterView />
+      <MultiStepForm />
     </>
   );
 }

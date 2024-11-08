@@ -11,7 +11,8 @@ import { SplashScreen } from 'src/components/loading-screen';
 
 // JWT
 const JwtLoginPage = lazy(() => import('src/pages/auth/jwt/login'));
-const JwtRegisterPage = lazy(() => import('src/pages/auth/jwt/register'));
+// const JwtRegisterPage = lazy(() => import('src/pages/auth/jwt/register'));
+const MultiStepForm = lazy(() => import('src/pages/auth/jwt/register'));
 
 // ----------------------------------------------------------------------
 
@@ -39,7 +40,7 @@ const authJwt = {
         // <AuthClassicLayout title="Manage the job more effectively with Minimal">
         //   <JwtRegisterPage />
         // </AuthClassicLayout>
-        <JwtRegisterPage />
+        <MultiStepForm />
       ),
     },
   ],
